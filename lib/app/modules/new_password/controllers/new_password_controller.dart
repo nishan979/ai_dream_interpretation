@@ -32,8 +32,6 @@ class NewPasswordController extends GetxController {
       return;
     }
 
-    // (debug prints removed)
-
     try {
       Get.dialog(
         const Center(child: CircularProgressIndicator()),
@@ -44,14 +42,13 @@ class NewPasswordController extends GetxController {
         Uri.parse(_apiUrl),
         body: {
           'email': _email,
-          // 'otp': _otp,
+
           'password': passwordController.text,
           'password2': confirmPasswordController.text,
         },
       );
 
       Get.back();
-      // (debug prints removed)
 
       if (response.statusCode == 200) {
         Get.toNamed(
@@ -68,7 +65,7 @@ class NewPasswordController extends GetxController {
       }
     } catch (e) {
       Get.back();
-      // (debug print removed)
+
       Get.snackbar('Error', 'Could not connect to the server.');
     }
   }
