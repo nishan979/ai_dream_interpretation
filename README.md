@@ -109,39 +109,83 @@ flutter test
 
 The repo contains a basic `test/widget_test.dart`. Add more unit / widget tests to `test/` as needed.
 
----
-
-## Suggested CI / GitHub Actions
-
-Minimal `flutter analyze` + `flutter test` workflow:
-
-```yaml
-name: Flutter CI
-
-on: [push, pull_request]
-
-jobs:
-   analyze-and-test:
-      runs-on: ubuntu-latest
-      steps:
-         - uses: actions/checkout@v4
-         - uses: subosito/flutter-action@v2
-            with:
-               flutter-version: 'stable'
-         - name: Install dependencies
-            run: flutter pub get
-         - name: Analyze
-            run: flutter analyze
-         - name: Run tests
-            run: flutter test --reporter=expanded
-```
-
-I can add this workflow to `.github/workflows/flutter-ci.yml` in a PR if you'd like.
-
----
-
 ## Troubleshooting common issues
 
 - Missing asset at runtime: confirm path declared in `pubspec.yaml` and run `flutter pub get`.
 - Microphone / audio permission issues: confirm runtime permissions are requested (the app uses `permission_handler`).
 - Audio served via ngrok: if you get HTML instead of audio, ensure your backend returns a direct audio URL or include the `ngrok-skip-browser-warning=true` cookie when fetching bytes.
+
+---
+
+## Features (at a glance)
+
+- Dream entry: type or record your dream text and send to the AI backend for interpretation.
+- Interactive follow-ups: the backend can return follow-up questions to clarify the dream.
+- Audio output: interpretations can be returned as audio (TTS or pre-generated audio) and played inside the app.
+- Speech-to-text input: use the microphone to dictate dreams (uses `speech_to_text`).
+- Authentication & subscriptions: sign-up, login, and subscription flow with optional Stripe checkout integration.
+- Offline-friendly playback: audio is streamed or downloaded then played using `audioplayers`.
+
+---
+
+## How it works (high-level)
+
+1. The app sends the dream text (or recorded voice) to the backend endpoints (configured via `lib/constants.dart`).
+2. The backend returns a JSON response with interpretation text, optional follow-up questions, and an `audio_url` when audio is generated.
+3. The client plays audio either by streaming the URL or fetching bytes (with ngrok cookie handling for local tunnels) and uses TTS as fallback when needed.
+
+---
+
+## Configure backend & environment
+
+- Open `lib/constants.dart` and set `baseUrl` to your backend (for emulator use `http://10.0.2.2:PORT` when testing locally).
+- Ensure your backend exposes the endpoints the client expects (paths such as `/chatbot/dream/`, `/chatbot/voice/`, `/chatbot/voice-generate/`, `/auth/*`).
+
+If your backend uses authentication, the client stores tokens in `flutter_secure_storage` and sends them as `Authorization: Bearer <token>` headers.
+
+---
+
+## Add your screenshots to the app (optional)
+
+You added screenshots under `assets/ss/`. To include them in the built app add the path to `pubspec.yaml`:
+
+```yaml
+flutter:
+	assets:
+		- assets/images/
+		- assets/icons/
+		- assets/ss/
+```
+
+Then run:
+
+```powershell
+flutter pub get
+```
+
+---
+
+## Recommended small housekeeping before publishing
+
+- Remove or protect any private keys (for example in `android/` or `ios/` platform configs).
+- Add `google-services.json` and other environment-specific files to `.gitignore` if they should not be public.
+- Run `flutter analyze` and address warnings you care about (I can help insert small non-comment no-ops for empty catches if you want the analyzer clean).
+
+---
+
+## CI suggestion (GitHub Actions)
+
+Create `.github/workflows/flutter-ci.yml` with the workflow shown earlier to run `flutter analyze` and `flutter test` on push/PR.
+
+---
+
+## Contributing
+
+If you'd like help with any of the following I can prepare a branch + PR:
+
+- Add `assets/ss/` to `pubspec.yaml` and run `flutter pub get`.
+- Automatically insert small no-op exception handlers to silence `empty_catches` analyzer issues.
+- Migrate deprecated `speech_to_text` arguments to `SpeechListenOptions`.
+- Generate a human-readable changelog listing every automated edit (diff per file).
+
+Tell me which action(s) and I will create a PR for you.
