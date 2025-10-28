@@ -65,7 +65,7 @@ class SubscriptionView extends GetView<SubscriptionController> {
                               buttonText: plan.buttonText,
                               onButtonPressed: () {
                                 controller.initiatePayment(plan);
-                                print('${plan.planName} selected');
+                                // (debug print removed)
                               },
                             ),
                           ),
@@ -86,7 +86,6 @@ class SubscriptionView extends GetView<SubscriptionController> {
                       ),
                     ),
                   ),
-                  
                 ],
               );
             }),

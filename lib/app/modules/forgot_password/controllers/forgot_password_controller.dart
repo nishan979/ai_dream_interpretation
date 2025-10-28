@@ -6,8 +6,7 @@ import 'package:http/http.dart' as http;
 class ForgotPasswordController extends GetxController {
   final TextEditingController emailController = TextEditingController();
 
-  final String _apiUrl =
-      '$baseUrl/auth/password-reset/request/';
+  final String _apiUrl = '$baseUrl/auth/password-reset/request/';
 
   Future<void> sendOtp() async {
     if (emailController.text.isEmpty ||
@@ -39,7 +38,7 @@ class ForgotPasswordController extends GetxController {
         );
       } else {
         // You can add more specific error handling here if needed
-        print('API Error: ${response.body}');
+        // (debug print removed)
         Get.snackbar(
           'Error',
           'Could not send OTP. Please check the email and try again.',

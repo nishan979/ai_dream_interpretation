@@ -29,10 +29,10 @@ class VoiceController extends GetxController {
           }
         }
       } else {
-        print('Failed to fetch voice types: ${res.statusCode} ${res.body}');
+        // (debug print removed)
       }
     } catch (e) {
-      print('Error fetching voice types: $e');
+      // (debug print removed)
     }
   }
 
@@ -58,15 +58,13 @@ class VoiceController extends GetxController {
         final streamed = await multipart.send();
         final resp = await http.Response.fromStream(streamed);
         if (resp.statusCode == 200 || resp.statusCode == 201) {
-          print('Voice type updated on server: ${resp.body}');
+          // (debug print removed)
         } else {
-          print(
-            'Failed to update voice type on server: ${resp.statusCode} ${resp.body}',
-          );
+          // (debug print removed)
         }
       }
     } catch (e) {
-      print('Error updating voice type on server: $e');
+      // (debug print removed)
     }
   }
 }

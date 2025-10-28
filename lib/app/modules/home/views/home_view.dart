@@ -82,7 +82,7 @@ class HomeView extends GetView<HomeController> {
                 StreamSubscription<PlayerState>? sub;
                 try {
                   sub = player.onPlayerStateChanged.listen((state) {
-                    if (kDebugMode) print('LocalDebugPlayer: state -> $state');
+                    // (debug print removed)
                   });
                   await player.play(UrlSource(testUrl));
                   Get.snackbar('Debug', 'Local player started (check logs).');
@@ -98,7 +98,7 @@ class HomeView extends GetView<HomeController> {
                   try {
                     await player.dispose();
                   } catch (_) {}
-                  if (kDebugMode) print('LocalDebugPlayer: disposed');
+                  // (debug print removed)
                 });
               },
             ),

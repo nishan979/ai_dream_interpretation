@@ -135,7 +135,9 @@ class ChatController extends GetxController {
           } else if (responseData is String && responseData.isNotEmpty) {
             backendMessage = responseData;
           }
-        } catch (e) {}
+        } catch (e) {
+          // ignore: could not parse backend message
+        }
 
         messages.insert(
           0,

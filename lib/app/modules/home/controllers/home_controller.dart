@@ -64,7 +64,7 @@ class HomeController extends GetxController {
         voiceTypes.value = fetchedVoices;
       }
     } catch (e) {
-      print("Error fetching voice types: $e");
+      // (debug print removed)
     }
   }
 
@@ -108,52 +108,33 @@ class HomeController extends GetxController {
 
   // Speech initialization handled by SpeechController
   void startListening() async {
-    print('startListening: called');
-    print('startListening: current userType=${_authController.userType.value}');
+    // (debug prints removed)
     if (_authController.userType.value != 'platinum') {
-      print(
-        'startListening: access denied - not platinum, showing upgrade snackbar',
-      );
+      // (debug print removed)
       _showUpgradeSnackbar();
       return;
     }
-
-    print(
-      'startListening: authorized - invoking speechController.startListening',
-    );
+    // (debug print removed)
     try {
       speechController.startListening(
         onResult: (recognized) {
-          print(
-            'startListening: onResult callback invoked - recognized="$recognized" length=${recognized.length}',
-          );
+          // (debug print removed)
           final trimmed = recognized.trim();
           if (trimmed.isEmpty) {
-            print(
-              'startListening: recognized text empty after trim, not sending message',
-            );
+            // (debug print removed)
             return;
           }
           try {
-            print(
-              'startListening: sending recognized text to chatController.sendMessage',
-            );
             chatController.sendMessage(text: recognized);
-            print('startListening: chatController.sendMessage completed');
-          } catch (e, st) {
-            print(
-              'startListening: error while sending message to chatController: $e\n$st',
-            );
+            // (debug print removed)
+          } catch (e) {
+            // (debug print removed)
           }
         },
       );
-      print(
-        'startListening: speechController.startListening invoked successfully',
-      );
-    } catch (e, st) {
-      print(
-        'startListening: exception when calling speechController.startListening: $e\n$st',
-      );
+      // (debug print removed)
+    } catch (e) {
+      // (debug print removed)
       Get.snackbar('Error', 'Could not start listening.');
     }
   }
@@ -172,20 +153,11 @@ class HomeController extends GetxController {
   //-------------------- Audio File Pick End -------------------------
 
   void stopListening() async {
-    print('stopListening: called at ${DateTime.now().toIso8601String()}');
+    // (debug prints removed)
     try {
-      print('stopListening: about to call speechController.stopListening()');
       await speechController.stopListening();
-      print(
-        'stopListening: speechController.stopListening() completed successfully at ${DateTime.now().toIso8601String()}',
-      );
-    } catch (e, st) {
-      print('stopListening: ERROR while stopping listening -> $e\n$st');
+    } catch (e) {
       Get.snackbar('Error', 'Could not stop listening.');
-    } finally {
-      print(
-        'stopListening: finished (cleanup if any) at ${DateTime.now().toIso8601String()}',
-      );
     }
   }
 

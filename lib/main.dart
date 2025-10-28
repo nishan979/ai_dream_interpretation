@@ -1,10 +1,10 @@
 import 'package:ai_dream_interpretation/app/bindings/initial_binding.dart';
-import 'package:ai_dream_interpretation/constants.dart';
+// removed unused import
 import 'package:ai_dream_interpretation/resources/colors/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
+// removed unused import
 import 'package:get/get.dart';
 import 'dart:async';
 import 'app/routes/app_pages.dart';

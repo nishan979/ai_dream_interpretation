@@ -32,7 +32,9 @@ class AuthController extends GetxController {
         // Update the userType with the value from the backend
         userType.value = data['user_type'] ?? 'free';
       } else {}
-    } catch (e) {}
+    } catch (e) {
+      // ignore: failed to fetch user details
+    }
   }
 
   Future<bool> register({
@@ -206,7 +208,7 @@ class AuthController extends GetxController {
       userType.value = 'free'; // Reset user type on logout
       Get.offAllNamed('/login');
     } catch (e) {
-      print("Error signing out: $e");
+      // (debug print removed)
       Get.snackbar('Error', 'Could not sign out.');
     }
   }

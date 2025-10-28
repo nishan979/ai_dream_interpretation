@@ -9,7 +9,6 @@ class NewPasswordController extends GetxController {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
-  String _otp = '';
   String _email = '';
 
   final String _apiUrl = '$baseUrl/auth/password-reset/confirm/';
@@ -18,7 +17,6 @@ class NewPasswordController extends GetxController {
   void onInit() {
     super.onInit();
     if (Get.arguments != null) {
-      _otp = Get.arguments['otp'] ?? '';
       _email = Get.arguments['email'] ?? '';
     }
   }

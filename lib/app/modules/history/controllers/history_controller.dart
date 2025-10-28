@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:ai_dream_interpretation/app/models/history_item_model.dart';
 import 'package:ai_dream_interpretation/constants.dart';
@@ -18,7 +17,7 @@ class HistoryController extends GetxController {
   }
 
   Future<void> fetchHistory() async {
-    print("[DEBUG] 1. Starting to fetch history...");
+    // (debug print removed)
     try {
       isLoading.value = true;
       final accessToken = await _storage.read(key: 'access_token');
@@ -27,29 +26,30 @@ class HistoryController extends GetxController {
         isLoading.value = false;
         return;
       }
-      print("[DEBUG] 2. Using Access Token: $accessToken");
+      // (debug print removed)
 
       final response = await http.get(
         Uri.parse('$baseUrl/chatbot/history/'),
         headers: {'Authorization': 'Bearer $accessToken'},
       );
 
-      print("[DEBUG] 3. Response Status Code: ${response.statusCode}");
-      print("[DEBUG] 4. Response Body: ${response.body}");
+      // (debug prints removed)
 
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
-        historyItems.value = data.map((item) => HistoryItem.fromJson(item)).toList();
-        print("[DEBUG] 5. Successfully parsed ${historyItems.length} items.");
+        historyItems.value = data
+            .map((item) => HistoryItem.fromJson(item))
+            .toList();
+        // (debug print removed)
       } else {
         Get.snackbar('Error', 'Failed to load history.');
       }
     } catch (e) {
-      print("[DEBUG] 6. An error occurred in the try-catch block: $e");
+      // (debug print removed)
       Get.snackbar('Error', 'Could not connect to the server.');
     } finally {
       isLoading.value = false;
-      print("[DEBUG] 7. Finished fetching history.");
+      // (debug print removed)
     }
   }
 }
