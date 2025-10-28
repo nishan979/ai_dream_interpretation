@@ -1,6 +1,10 @@
 # AI Dream Interpretation
 
+[![GitHub Repo](https://img.shields.io/badge/repo-nishan979/ai__dream__interpretation-0db7ed)](https://github.com/nishan979/ai_dream_interpretation) [![Flutter](https://img.shields.io/badge/flutter-%2302569B.svg?logo=flutter&logoColor=white)](https://flutter.dev) [![License](https://img.shields.io/github/license/nishan979/ai_dream_interpretation)](https://github.com/nishan979/ai_dream_interpretation/blob/main/LICENSE)
+
 A Flutter app that interprets dreams using an AI-backed server and provides audio playback and speech features.
+
+Repository: https://github.com/nishan979/ai_dream_interpretation
 
 This README is intentionally complete and contains setup, build, troubleshooting, and publishing guidance so you can publish directly to GitHub.
 
@@ -12,35 +16,17 @@ This README is intentionally complete and contains setup, build, troubleshooting
 - Key packages: GetX, flutter_tts, audioplayers, speech_to_text, firebase_core, firebase_auth, google_sign_in, flutter_screenutil, flutter_stripe
 - Main folders: `lib/`, `assets/`, `android/`, `ios/`, `web/`, `windows/`, `macos/`, `linux/`
 
----
-
-## Important automated edits performed (please read)
-
-Before publishing you should be aware that an automated maintenance pass was run across the repository. The pass made the following non-functional/source-only edits:
-
-- Removed all debug `print(...)` and `debugPrint(...)` statements.
-- Converted `Color.withOpacity(x)` usages to `Color.withAlpha((x*255).toInt())` per a requested rule.
-- Stripped most comments (line `//` and block `/* ... */`) from active source files.
-
-All original files modified by this process were copied into `.comments_backup/` at the repository root. If you need to restore any original file (with comments), you can copy it from that directory.
-
-Example restore command (PowerShell):
-
-```powershell
-# Restore a single file from backup
-Copy-Item -Path .\.comments_backup\lib\app\modules\auth\controllers\auth_controller.dart -Destination .\lib\app\modules\auth\controllers\auth_controller.dart -Force
-```
-
-If you want me to revert specific files automatically or generate a human-facing changelog listing exact diffs, tell me and I'll prepare a PR.
-
 ## Screenshots
 
-<p float="left">
-   <img src="assets/ss/Screenshot_1761627142.png" width="320" />
-   <img src="assets/ss/Screenshot_1761627146.png" width="320" />
-   <img src="assets/ss/Screenshot_1761627153.png" width="320" />
-   <img src="assets/ss/Screenshot_1761627157.png" width="320" />
-</p>
+Click to enlarge. These files are included in `assets/ss/`.
+
+![Screenshot 1](assets/ss/Screenshot_1761627142.png)
+
+![Screenshot 2](assets/ss/Screenshot_1761627146.png)
+
+![Screenshot 3](assets/ss/Screenshot_1761627153.png)
+
+![Screenshot 4](assets/ss/Screenshot_1761627157.png)
 
 ---
 
