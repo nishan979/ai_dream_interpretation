@@ -1,42 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import 'package:ai_dream_interpretation/resources/colors/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,7 +11,7 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     
-    final controller = Get.find<SplashController>();
+    Get.find<SplashController>();
 
     return Scaffold(
       backgroundColor: const Color(0xFF0C122B),
