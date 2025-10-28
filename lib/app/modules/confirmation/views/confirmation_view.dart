@@ -1,3 +1,12 @@
+// Copyright (c) 2025 Shahadat Hosen Nishan. All rights reserved.
+//
+// This software is licensed under the MIT License.
+// See the LICENSE file in the project root for details.
+//
+// Find me at: https://github.com/nishan979
+// https://www.linkedin.com/in/nishan979/
+// nishanshish@gmail.com
+
 import 'package:ai_dream_interpretation/resources/widgets/info_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
